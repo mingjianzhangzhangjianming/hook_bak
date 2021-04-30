@@ -1,6 +1,6 @@
 import React,{ useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Menu, Dropdown, message,  Modal } from 'antd'
+import { Menu, Dropdown,  Modal } from 'antd'
 import '@/common/less/pageBar.less'
 import { UserOutlined } from '@ant-design/icons'
 

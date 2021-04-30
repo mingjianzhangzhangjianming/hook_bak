@@ -4,7 +4,6 @@ import { Select } from 'antd'
 import '@/common/less/login.less'
 import QueuiAnim from 'rc-queue-anim'
 import UserInfo from '@/components/userInfo'
-import Axios from '@/api/index.js'
 
 const { Option } = Select
 const selectAfter = (
@@ -117,14 +116,14 @@ export default class Login extends Component {
     
     loginRequset = async () => {
         // http://localhost:3000/#/login
-        const salt = await Axios.get('/iceApi/api/v1/admintool/salt')
-        console.log(salt)
-        return await Axios.post('/iceApi/api/v1/admintool/auth',
-                        {
-                            "username":"zhangjianming@intellicredit.cn",
-                            "password":"007203bb1775f070dc27bad6c151950c253222cd"+"40247fcf7c2e34aa2d7cdf662bcd79fa"
-                        }
-        )
+        // const salt = await Axios.get('/iceApi/api/v1/admintool/salt')
+        // console.log(salt)
+        // return await Axios.post('/iceApi/api/v1/admintool/auth',
+        //                 {
+        //                     "username":"zhangjianming@intellicredit.cn",
+        //                     "password":"007203bb1775f070dc27bad6c151950c253222cd"+"40247fcf7c2e34aa2d7cdf662bcd79fa"
+        //                 }
+        // )
         // try{
         //     const response = await axios.get('/user?id=123');
         //     console.log(response)

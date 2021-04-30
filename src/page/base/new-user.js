@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
-import {Tree, Input, Slider, InputNumber, Upload, Button, Select, Checkbox, Table, Switch, Row, Col } from 'antd'
+import {Tree, Input, Slider, Button, Switch, Row, Col } from 'antd'
 import '@/common/less/new-user.less'
 import { morphoData, zeusData, blacklistData, vcData, antifraud, rainBowData} from './configData'
 const data = {
