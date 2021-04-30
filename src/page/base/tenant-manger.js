@@ -35,7 +35,7 @@ export default class TenantMange extends Component {
                             <ColumnHeightOutlined />
                         </Tooltip>
                         <Tooltip title="全屏" >
-                            <FullscreenOutlined onClick={} />
+                            <FullscreenOutlined />
                         </Tooltip>
                     </div>
                 </section>
