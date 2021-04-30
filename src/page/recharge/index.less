@@ -1,0 +1,75 @@
+.amountCon{
+    width: 320px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-self: flex-start;
+    & > .amonut-warp:not(:first-child) {
+        margin-top: 28px;
+    }
+    .amonut-warp{
+        height: 36px;
+        position: relative;
+        & > input,& > input:focus,& > textarea,& > textarea:focus{
+            width: 100%;
+            height: 36px;
+            outline: none;
+            border: none;
+            text-indent: 24px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #d9d9d9;
+            font-size: 15px;
+            color: #c0c0c0;
+        }
+        textarea{
+            padding: 6px 0 0 8px;
+            resize: none;
+        }
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        input[type="number"]{
+            -moz-appearance: textfield;
+        }
+        input:focus,textarea:focus{
+            border: none;
+        }
+        & > label{
+            height: 100%;
+            line-height: 36px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            font-size: 16px;
+            color: #908989;
+            font-weight: bold;
+            transition: all .2s linear;
+        }
+        input:focus + label,textarea:focus + label{
+            color: #a74e4e;
+            transform: translateY(-12px);
+            transition: all .2s linear;
+        }
+        input ~ .bottom,textarea ~ .bottom{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            border-bottom: 1px solid #a74e4e;
+            transform: scaleX(0);
+            transition: all .3s linear;
+        }
+        input:focus ~ .bottom,textarea:focus ~ .bottom{
+            transform: scaleX(1);
+            transition: all .3s linear;
+        }
+        input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
+            font-size: 15px;
+            color: #808080;
+        }
+        input:focus::-webkit-input-placeholder,textarea:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+        
+    }
+}

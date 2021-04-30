@@ -1,0 +1,44 @@
+.login-content{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    .content-left{
+        flex: 1;
+        padding: 160px 0 16px 0;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        height: 100Vh;
+        background: url('../image/login.png') no-repeat center;
+        background-size: cover;
+        strong{
+            font-size: 40px;
+            color: #fff;
+            text-align: center;
+            margin-top: 118px;
+        }
+        h5{
+            color: #fff;
+            text-align: center;
+        }
+        
+    }
+    .content-right{
+        min-width: 520px;
+        box-sizing: border-box;
+        padding: 0 24px;
+        overflow: hidden;
+        .ant-form-item{
+            margin-bottom: 36px;
+        }
+        .submitBtn{
+            display: block;
+            margin: 28px auto;
+        }
+        .ant-input-affix-wrapper > input.ant-input {
+            letter-spacing: 1px;
+        }
+    }
+}

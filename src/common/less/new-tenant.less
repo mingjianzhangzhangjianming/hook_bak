@@ -1,0 +1,189 @@
+.steps-rule-btn,.steps-form-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 36px;
+    width: 100%;
+    & .submitBtn:first-child{
+        margin-right: 24px;
+    }
+    & .submitBtn:last-child{
+        margin-left: 24px;
+    }
+}
+.steps-tenant-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 36px;
+    width: 100%;
+}
+
+.new-tenant-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    .popup-container{
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .popup-con{
+            width: 1080px;
+            height: calc(100vh - 180px);
+            border-radius: 6px;
+            box-sizing: border-box;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+            transform: translateX(112px) translateY(30px);
+            .steps-header{
+                box-sizing: border-box;
+                height: 50px;
+                padding: 0 24px;
+                display: flex;
+                flex-flow: nowrap row;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid #bbb;
+                box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+                &>.anticon{
+                    font-size: 18px;
+                    margin-left: 24px;
+                    color: rgb(102, 99, 99);
+                }
+                &>.anticon:hover{
+                    cursor: pointer;
+                    color: #333;
+                }
+            }
+            .steps-form{
+                width: 100%;
+                height: calc(100% - 50px);
+                padding: 28px 40px;
+                overflow-y: scroll;
+                .steps-form-scroll{
+                    padding: 0 0 24px 0;
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-flow: wrap row;
+                    justify-content: space-between;
+/********************* 机构信息填写  ********************/
+                    .steps-form-item{
+                        width: 50%;
+                        margin-top: 32px;
+                        padding:0 36px;
+                        box-sizing: border-box;
+                        display: flex;
+                        flex-flow: nowrap row;
+                        align-items: center;
+                        justify-content: space-between;
+                        .ant-input,.ant-input-number,.ant-input-group,.ant-select{
+                            width: 220px;
+                        }
+                        .ant-input-group-wrapper{
+                            width: auto;
+                        }
+                        .ant-input-group > .ant-input{
+                            width: 184px;
+                        }
+                        .upload-list-inline{
+                            flex-basis: 220px;
+                            display: flex;
+                            flex-flow: nowrap row;
+                            align-items: center;
+                            &>.ant-upload-list{
+                                margin-left: 12px;
+                            }
+                        }     
+                    
+                    }
+/********************* 服务科目配置 ********************/
+                    .steps-card-con{
+                        width: 100%;
+                        & .check-card{
+                            font-size: 20px;
+                            font-weight: bold;
+                        }
+                        .card-warp,.sys-config{
+                            padding: 0 26px;
+                            box-sizing: border-box;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+                            & > .steps-from-item{
+                                width: 50%;
+                                .ant-input-number,.ant-input-group{
+                                    width: 256px;
+                                }
+                                .ant-input-group > .ant-input{
+                                    width:221px;
+                                }
+                            }
+                        }
+                        .sys-config{
+                            padding-bottom: 24px;
+                            border-bottom: 1px solid #fafafa;
+                        }
+                        & > h4{
+                            font-weight: bold;
+                            margin-top: 18px;
+                        }
+                    }
+                    .steps-card-con .check-card:first-child{
+                        margin-top: 16px;
+                    }
+
+                }
+            }
+/********************* 规则配置 ********************/
+            .steps-rule{
+                width: 100%;
+                height: calc(100% - 50px);
+                padding: 12px 28px;
+                overflow-y: none;
+                .steps-rule-con{
+                    padding: 0 0 24px 0;
+                    box-sizing: border-box;
+                    .steps-rule-table{
+                        width: 100%;
+                        height: 100%;
+                        .ant-table-fixed-header .ant-table-scroll .ant-table-header {
+                            overflow: hidden;
+                            height: 70px;
+                        }
+                        .ant-table-body{
+                            &::-webkit-scrollbar {
+                              height: 5px;
+                              width: 10px;
+                              overflow-y: auto;
+                            }
+                            &::-webkit-scrollbar-thumb {
+                              border-radius: 5px;
+                              -webkit-box-shadow: inset 0 0 5px rgba(89, 89, 89, 0.2);
+                              background: #939392;
+                            }
+                            &::-webkit-scrollbar-track {
+                              -webkit-box-shadow: 0;
+                              border-radius: 0;
+                              background: #f0f2f5;
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+.ant-spin-container{
+    cursor: pointer;
+}

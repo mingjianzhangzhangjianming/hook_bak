@@ -1,0 +1,60 @@
+.run-test-container{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #fff;
+    .run-test-option{
+        padding: 24px 36px;
+        .run-test-headr{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 36px;
+            .test-wrap-item{
+                width: 360px;
+                display: flex;
+                flex-flow: nowrap;
+                align-items: center;
+                justify-content: space-between;
+                &>label{
+                    font-size: 16px;
+                    font-weight: 600;
+                    letter-spacing: 2px;
+                }
+                .ant-select{
+                    width: 240px;
+                }
+            }
+        }
+        .run-test-wrap{
+            margin-top: 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            & .test-wrap-item:first-child{
+                margin: 0;
+            }
+            .test-wrap-item{
+                width: 360px;
+                display: flex;
+                flex-flow: nowrap;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 36px;
+                &>label{
+                    font-size: 16px;
+                }
+                .ant-input{
+                    width: 240px;
+                }
+            }
+        }
+        .run-serch{
+            width: 180px;
+            margin: 64px auto;
+            transform: translateX(48px);
+        }
+    }
+}

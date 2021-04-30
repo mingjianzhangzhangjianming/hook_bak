@@ -1,0 +1,33 @@
+.card-container{
+  margin-top: -52px;
+  & > .ant-tabs-card .ant-tabs-content {
+    margin-top: -16px;
+  }
+  & > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
+    background: #fff;
+    padding: 16px;
+  }
+  & .ant-tabs-top > .ant-tabs-nav {
+    margin: 0;
+    display: inline-block;
+    width: 240px;
+    background: #fff;
+    transform: translateX(96px);
+  }
+  .ant-tabs-content-holder::-webkit-scrollbar, &:not(:hover)::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.ant-tabs-content-holder {
+  height: calc(100vh - 128px);
+  overflow: scroll;
+}
+.ant-tabs-bottom > .ant-tabs-nav, .ant-tabs-top > div > .ant-tabs-nav, .ant-tabs-bottom > div > .ant-tabs-nav {
+  margin: 0;
+}
+.ant-tabs-top > .ant-tabs-nav .ant-tabs-nav-wrap::after, .ant-tabs-bottom > .ant-tabs-nav .ant-tabs-nav-wrap::after, .ant-tabs-top > div > .ant-tabs-nav .ant-tabs-nav-wrap::after, .ant-tabs-bottom > div > .ant-tabs-nav .ant-tabs-nav-wrap::after {
+  -webkit-box-shadow: none;
+   box-shadow: none;
+}
