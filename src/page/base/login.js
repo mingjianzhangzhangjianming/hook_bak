@@ -1,9 +1,10 @@
 
-import React,{ Component } from 'react'
-import { Select } from 'antd'
-import '@/common/less/login.less'
-import QueuiAnim from 'rc-queue-anim'
-import UserInfo from '@/components/userInfo'
+import React,{ Component } from 'react';
+import QueuiAnim from 'rc-queue-anim';
+import { Select } from 'antd';
+import UserInfo from '@/components/userInfo';
+import '@/common/less/login.less';
+
 
 const { Option } = Select
 const selectAfter = (
@@ -17,8 +18,9 @@ export default class Login extends Component {
         super(props)
         this.state = {
             isLogin: true,
-            userLogion: {
-                LinkTit: '修改密码',
+            userLogin: {
+                type: "login",
+                LinkTit: "修改密码",
                 isSpin: false,
                 tip:"登陆中...",
                 formTailLayout: {
@@ -40,7 +42,7 @@ export default class Login extends Component {
                     {
                         label: "密码",
                         name: "password",
-                        rules: [{ required: true, min: 6, max: 16, message: '请输入你的密码!' }],
+                        rules: [{ required: true, min: 8, max: 20, message: '请输入你的密码!' }],
                         children:{
                             type: 'password',
                             addonAfter: null,
@@ -51,6 +53,7 @@ export default class Login extends Component {
             
             },
             userChange: {
+                type: "changePassword",
                 LinkTit: '返回登录',
                 isSpin: false,
                 tip:"正在保存...",
@@ -73,7 +76,7 @@ export default class Login extends Component {
                     {
                         label: "旧密码",
                         name: "oldpassword",
-                        rules: [{ required: true, min: 6, max: 16, message: '请输入你最初的密码!' }],
+                        rules: [{ required: true, min: 8, max: 20, message: '请输入你最初的密码!' }],
                         children:{
                             type: 'oldpassword',
                             addonAfter: null,
@@ -83,7 +86,7 @@ export default class Login extends Component {
                     {
                         label: "新密码",
                         name: "newpassword",
-                        rules: [{ required: true, min: 6, max: 16, message: '输入新密码!' }],
+                        rules: [{ required: true, min: 8, max: 20, message: '输入新密码!' }],
                         children:{
                             type: 'newpassword',
                             addonAfter: null,
@@ -93,7 +96,7 @@ export default class Login extends Component {
                     {
                         label: "确认密码",
                         name: "confirmpassword",
-                        rules: [{ required: true, min: 6, max: 16, message: '请再次确认新密码!' }],
+                        rules: [{ required: true, min: 8, max: 20, message: '请再次确认新密码!' }],
                         children:{
                             type: 'confirmpassword',
                             addonAfter: null,
@@ -133,16 +136,21 @@ export default class Login extends Component {
     }
 
     componentDidMount() {
-        this.loginRequset()
-        .then(res => 
-            console.log(res)
-        ).catch(
-            err => console.log(err)
-        )
+        // loginSalt().then(res => {
+        //     const data = {password: "007203bb1775f070dc27bad6c151950c253222cd" + res.salt,
+        //     username: "zhangjianming@intellicredit.cn"}
+        //     console.log(data)
+        //     loginAuth(JSON.stringify(data)).then(
+        //        val => console.log(val)
+        //     )
+        // }
+        // ).catch(
+        //     err => console.log(err)
+        // )
     }
 
     render() {
-        const { isLogin, userLogion, userChange } = this.state
+        const { isLogin, userLogin, userChange } = this.state
         return(
 
             <div className="login-content">
@@ -154,7 +162,7 @@ export default class Login extends Component {
                     <QueuiAnim className="form-content" delay={400}>
                         {
                             isLogin ? <UserInfo 
-                                        userState={userLogion} 
+                                        userState={userLogin} 
                                         ChangeLogin={this.handleLogin} 
                                         key={Date.now()}>登 录</UserInfo>
                                     : <UserInfo 

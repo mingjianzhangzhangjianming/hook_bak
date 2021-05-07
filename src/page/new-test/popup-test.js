@@ -1,5 +1,5 @@
 import React,{ Component } from 'react'
-import { Switch, Divider, Affix, Modal, Drawer, Button, Input, InputNumber, Select } from 'antd'
+import { Switch, Divider, Affix, Modal, Drawer, Button, InputNumber, Select } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import '@/common/less/popup-test.less'
 const { Option } = Select
@@ -87,7 +87,6 @@ export default class Popuptest extends Component {
     };
     render() {
         const { popupClose, popupVisible } = this.props
-        const { selectedItems } = this.state;
         // const optionList = filteredOptions.filter(o => !selectedItems.includes(o));
         return (
             <Drawer

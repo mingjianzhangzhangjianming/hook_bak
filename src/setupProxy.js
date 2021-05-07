@@ -7,10 +7,11 @@ module.exports = function (app) {
             changeOrigin: true,
             pathRewrite: {
                 "^/api": ""
+            },
+            cookieDomainRewrite: "localhost",
+            onProxyReq(proxyReq, req, res) {
+                proxyReq.setHeader('cookie', 'JSESSIONID=88946FF4C532EBA896BB4801EF470CDA;path=/;HttpOnly');
             }
-            // cookieDomainRewrite:{
-            //     '*':'localhost' // 把相应的 cookie 域都设置成 localhost，或者指定的域名
-            // }
         })
     )
 }

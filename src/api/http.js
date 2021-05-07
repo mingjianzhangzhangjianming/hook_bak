@@ -6,7 +6,8 @@ import axios from "axios"
 // import { Redirect } from "react-router-dom"
 import { message } from "antd" //notification
 
-axios.defaults = {
+
+const instance = axios.create({
     // `method` 是创建请求时使用的方法
     method: 'get',
 
@@ -15,6 +16,9 @@ axios.defaults = {
 
     //  设置请求超时
     timeout: 10000,
+
+    // `headers` 是即将被发送的自定义请求头
+    headers: { 'content-type': 'application/json; charset=UTF-8' },
 
     // `withCredentials` 表示跨域请求时是否需要使用凭证
     withCredentials: true,
@@ -29,27 +33,21 @@ axios.defaults = {
     validateStatus: function (status) {
         return status >= 200 && status < 300
     }
-}
+})
 
-const instance = axios.create()
 
 instance.interceptors.request.use(config => {
-    // const { url } = config;
     const token = sessionStorage.getItem("token");
     token && (config.headers['Authorization'] = token);
-    // if(/^\/api\//.test(url) && !token && !window.location.href.indexOf('login') > -1){
-    //      // 跳转到登录页
-    // }
     return config
 }, error => {
     return Promise.reject(error)
 })
 
 instance.interceptors.response.use(response => {
-    console.log("响应拦截成功", response)
     return response.data
 }, error => {
-    // 对响应错误做点什么
+    console.log(error.response,"res.response")
     if (error.response) {
         switch (error.response.status) {
             case 401: //用户未授权登陆 跳转至登陆页面处理

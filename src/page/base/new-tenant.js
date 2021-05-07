@@ -163,9 +163,9 @@ export default class NewTenant extends Component {
         })
         this.timer = setTimeout(() =>{
             let rulelist = this.state.ruleDataSource
-            rulelist.map((item,index) =>{
+            rulelist.map(item =>
                 item.store = e.target.checked
-            })
+            )
             console.log(rulelist)
             this.setState({
                 ruleDataSource: rulelist,

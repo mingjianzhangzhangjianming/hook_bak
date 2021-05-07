@@ -46,7 +46,7 @@ const PageBar = (props) => {
                             <Menu.Item key="loginOut" onClick={hanleSelectMenu}>退出登录</Menu.Item>
                           </Menu>
                         }>
-                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                            <a className="ant-dropdown-link" href="#" onClick={e => e.preventDefault()}>
                                 <UserOutlined />
                                 zhangjianming@intellicredit.cn
                             </a>

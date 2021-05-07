@@ -1,7 +1,7 @@
 import * as Base from '@/page/base'
 import * as Exper from '@/page/new-test'
 
-export default [
+const routerMap =  [
     {path: '/', component: Base.Login},
     {path: '/login', component: Base.Login},
     {path: '/404', component: Base.Notfount},
@@ -12,3 +12,5 @@ export default [
     {path: '/tenant/userManger', component: Base.Usermanger, auth: 'tenant'},
     {path: '/test', component: Exper.Runtest, auth: 'test'} //新建测试
 ]
+
+export default routerMap
