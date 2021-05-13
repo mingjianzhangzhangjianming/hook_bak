@@ -11,6 +11,7 @@ export default class FrontendAuth extends Component {
             isfullView: false
         }
     }
+
     fullView = () => {
         this.setState((oldState) =>{
             screenfull.toggle()
@@ -20,6 +21,7 @@ export default class FrontendAuth extends Component {
         })
         
     }
+
     render() {
         let { routerMap, location } = this.props
         const { pathname } = location
@@ -27,6 +29,7 @@ export default class FrontendAuth extends Component {
         let role = localStorage.getItem("role")?.split(",") || []
         const routerList = routerMap.filter(item => !item.auth || role.indexOf(item.auth) > -1)
         const targetRouterDom = routerList.find( item => item.path === pathname)
+        
         if(targetRouterDom && !targetRouterDom.auth && !isLogin) {
             const { component } = targetRouterDom
             return <Route path={pathname} component={component}/>

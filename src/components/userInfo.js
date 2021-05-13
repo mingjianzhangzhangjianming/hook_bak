@@ -5,11 +5,6 @@ import { withRouter } from 'react-router-dom';
 import QueuiAnim from 'rc-queue-anim';
 import { loginSalt, loginAuth} from '@/api/';
 
-const FormItem = Form.Item
-const InputPassword = Input.Password
-
-
-
 class UserInfo extends Component {
     constructor(props) {
         super(props)
@@ -18,40 +13,54 @@ class UserInfo extends Component {
         }
     }
     
-    onFinish({ username, password }) {
-        loginSalt().then(({salt}) => {
-            if(!salt) {
-                message.info("获取随机盐失败！")
-                return
-            }
+    async onFinish({ username, password }) {
+        try {
+            const { salt } = await loginSalt()
             const data = {
                 username: username + "@intellicredit.cn",
                 password: "007203bb1775f070dc27bad6c151950c253222cd" + salt
             }
-            loginAuth(JSON.stringify(data)).then(res => {
-                localStorage.setItem("isLogin",true)
-                localStorage.setItem("username",res.username)
-                localStorage.setItem("role","tenant,test") 
-                this.props.history.push('/tenant?ev=int')
-            })
-        }).catch(err => console.log(err))
-   
+            const result = await loginAuth(JSON.stringify(data))
+            localStorage.setItem("isLogin",true)
+            localStorage.setItem("username",result.username)
+            localStorage.setItem("role","tenant,test") 
+            this.props.history.push('/tenant?ev=int')
+        } catch(e) {
+            message.info(e.data.message)
+        }
+
+        // loginSalt().then(({salt}) => {
+        //     if(!salt) {
+        //         message.info("获取随机盐失败！")
+        //         return
+        //     }
+        //     const data = {
+        //         username: username + "@intellicredit.cn",
+        //         password: "007203bb1775f070dc27bad6c151950c253222cd" + salt
+        //     }
+        //     loginAuth(JSON.stringify(data)).then(res => {
+        //         localStorage.setItem("isLogin",true)
+        //         localStorage.setItem("username",res.username)
+        //         localStorage.setItem("role","tenant,test") 
+        //         this.props.history.push('/tenant?ev=int')
+        //     })
+        // }).catch(err => console.log(err))
     }
 
-    onFinishFailed({ values }) {
-        
-    }
+    // onFinishFailed() {
+
+    // }
     componentDidMount() {
         const { type } = this.props.userState
         console.log(type)
     }
 
     render() {
-        const userState = this.props.userState
+        const {userState} = this.props
         return (
             <>  
                 <Spin spinning={userState.isSpin} tip={userState.tip}>
-                    <QueuiAnim className="demo-content" delay={400}>
+                    <QueuiAnim className="demo-content" delay={800}>
                         <Form 
                             key="form"
                             labelAlign="left" 
@@ -61,7 +70,7 @@ class UserInfo extends Component {
                         >
                             {
                                 userState.tableList.map(({label,name,rules,children}) =>
-                                    <FormItem 
+                                    <Form.Item 
                                         label={label} 
                                         name={name} 
                                         rules={rules} 
@@ -75,12 +84,12 @@ class UserInfo extends Component {
                                                 allowClear
                                             />
                                             :
-                                            <InputPassword 
+                                            <Input.Password 
                                                 addonAfter={children.addonAfter} 
                                                 placeholder={children.placeholder} 
                                             />
                                         }
-                                    </FormItem>
+                                    </Form.Item>
                                 )
                             }
                             <Row>

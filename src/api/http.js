@@ -47,7 +47,6 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(response => {
     return response.data
 }, error => {
-    console.log(error.response,"res.response")
     if (error.response) {
         switch (error.response.status) {
             case 401: //用户未授权登陆 跳转至登陆页面处理
@@ -67,7 +66,8 @@ instance.interceptors.response.use(response => {
     } else {
         if (!window.navigator.onLine) {
             message.info("无网络连接!")
-        } else if (error.message.includes('timeout')) {
+        } 
+        if (error.message.includes('timeout')) {
             message.info("请求超时!")
         }
         return Promise.reject(error)

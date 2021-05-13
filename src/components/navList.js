@@ -1,11 +1,9 @@
 import { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Menu } from 'antd'
 import { PartitionOutlined, RiseOutlined, PicRightOutlined, SplitCellsOutlined } from '@ant-design/icons'
 import logo from '@/common/image/logo.png'
 import '@/common/less/navList.less'
-import { withRouter } from 'react-router-dom'
-
 
 class NavList extends Component {
     constructor(props) {

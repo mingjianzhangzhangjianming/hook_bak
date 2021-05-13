@@ -1,6 +1,5 @@
 
 import React,{ Component } from 'react';
-import QueuiAnim from 'rc-queue-anim';
 import { Select } from 'antd';
 import UserInfo from '@/components/userInfo';
 import '@/common/less/login.less';
@@ -147,6 +146,7 @@ export default class Login extends Component {
         // ).catch(
         //     err => console.log(err)
         // )
+    
     }
 
     render() {
@@ -159,18 +159,19 @@ export default class Login extends Component {
                     <h5>Copyright  2020 中智诚征信技术部出品</h5>
                 </div>
                 <div className="content-right">
-                    <QueuiAnim className="form-content" delay={400}>
-                        {
-                            isLogin ? <UserInfo 
-                                        userState={userLogin} 
-                                        ChangeLogin={this.handleLogin} 
-                                        key={Date.now()}>登 录</UserInfo>
-                                    : <UserInfo 
-                                        userState={userChange} 
-                                        ChangeLogin={this.handleLogin} 
-                                        key={Date.now()} >保 存</UserInfo>
-                        }
-                    </QueuiAnim>
+                    {
+                        isLogin ? 
+                        <UserInfo 
+                            userState={userLogin} 
+                            ChangeLogin={this.handleLogin}>
+                                登 录
+                        </UserInfo> : 
+                        <UserInfo 
+                            userState={userChange} 
+                            ChangeLogin={this.handleLogin}>
+                                保 存
+                        </UserInfo>
+                    }
                 </div>
             </div>
             
