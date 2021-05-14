@@ -19,8 +19,8 @@ const LoginOut = () => {
     <Modal visible={isModalVisible} okText="确认" cancelText="取消" onOk={handleOk} onCancel={handleCancel}>
             确认要退出登录吗?
     </Modal>
-  );
-};
+  )
+}
 
 const PageBar = (props) => {
     let history = useHistory()
@@ -46,10 +46,10 @@ const PageBar = (props) => {
                             <Menu.Item key="loginOut" onClick={hanleSelectMenu}>退出登录</Menu.Item>
                           </Menu>
                         }>
-                            <a className="ant-dropdown-link" href="#" onClick={e => e.preventDefault()}>
+                            <p className="ant-dropdown-link">
                                 <UserOutlined />
                                 zhangjianming@intellicredit.cn
-                            </a>
+                            </p>
                         </Dropdown>
                     </div>
                 </header>

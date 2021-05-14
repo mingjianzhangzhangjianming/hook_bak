@@ -3,7 +3,7 @@ import React,{ Component } from 'react';
 import { Select } from 'antd';
 import UserInfo from '@/components/userInfo';
 import '@/common/less/login.less';
-
+import { regExpConfig } from '@/common/js/regExpConfig';
 
 const { Option } = Select
 const selectAfter = (
@@ -16,22 +16,27 @@ export default class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isLogin: true,
+            isLoginForm: true,
             userLogin: {
                 type: "login",
                 LinkTit: "修改密码",
                 isSpin: false,
                 tip:"登陆中...",
-                formTailLayout: {
-                    labelCol: { span: 4 },
-                    wrapperCol: { span: 18 }
-                },
                 //表单项列表数据
                 tableList: [
                     {
                         label: "用户名",
                         name: "username",
-                        rules: [{ required: true, message: "请输入你的用户名!"}],
+                        rules: [
+                            { 
+                                pattern: regExpConfig.isAlpha,
+                                message: "用户名必须为大小写字母!"
+                            },
+                            { 
+                                required: true, 
+                                message: "请输入你的用户名!"
+                            }
+                        ],
                         children:{
                             type: 'username',
                             addonAfter: selectAfter,
@@ -41,7 +46,13 @@ export default class Login extends Component {
                     {
                         label: "密码",
                         name: "password",
-                        rules: [{ required: true, min: 8, max: 20, message: '请输入你的密码!' }],
+                        rules: [
+                            { 
+                                pattern: regExpConfig.strictPwd,
+                                message: "密码中必须为8 ~ 20个字符, 包含大小写字母、数字、特殊字符"
+                            },
+                            { required: true, message: '请输入你的密码!'}
+                        ],
                         children:{
                             type: 'password',
                             addonAfter: null,
@@ -56,10 +67,6 @@ export default class Login extends Component {
                 LinkTit: '返回登录',
                 isSpin: false,
                 tip:"正在保存...",
-                formTailLayout: {
-                    labelCol: { span: 4 },
-                    wrapperCol: { span: 18 }
-                },
                 //表单项列表数据
                 tableList: [
                     {
@@ -106,53 +113,19 @@ export default class Login extends Component {
             
             }
         }
-        this.handleLogin = this.handleLogin.bind(this)
+        this.handleChangeForm = this.handleChangeForm.bind(this)
     }
 
-    handleLogin() {
-        let { isLogin }  = this.state
+    handleChangeForm() {
+        let { isLoginForm }  = this.state
         this.setState({
-            isLogin: !isLogin
+            isLoginForm: !isLoginForm
         })
-    }
-    
-    loginRequset = async () => {
-        // http://localhost:3000/#/login
-        // const salt = await Axios.get('/iceApi/api/v1/admintool/salt')
-        // console.log(salt)
-        // return await Axios.post('/iceApi/api/v1/admintool/auth',
-        //                 {
-        //                     "username":"zhangjianming@intellicredit.cn",
-        //                     "password":"007203bb1775f070dc27bad6c151950c253222cd"+"40247fcf7c2e34aa2d7cdf662bcd79fa"
-        //                 }
-        // )
-        // try{
-        //     const response = await axios.get('/user?id=123');
-        //     console.log(response)
-        //  }  catch (error) {
-        //     console.error(error)  
-        //  }
-    }
-
-    componentDidMount() {
-        // loginSalt().then(res => {
-        //     const data = {password: "007203bb1775f070dc27bad6c151950c253222cd" + res.salt,
-        //     username: "zhangjianming@intellicredit.cn"}
-        //     console.log(data)
-        //     loginAuth(JSON.stringify(data)).then(
-        //        val => console.log(val)
-        //     )
-        // }
-        // ).catch(
-        //     err => console.log(err)
-        // )
-    
     }
 
     render() {
-        const { isLogin, userLogin, userChange } = this.state
+        const { isLoginForm, userLogin, userChange } = this.state
         return(
-
             <div className="login-content">
                 <div className="content-left">
                     <strong>Admin Tool</strong>
@@ -160,21 +133,20 @@ export default class Login extends Component {
                 </div>
                 <div className="content-right">
                     {
-                        isLogin ? 
+                        isLoginForm ? 
                         <UserInfo 
                             userState={userLogin} 
-                            ChangeLogin={this.handleLogin}>
+                            ChangeLogin={this.handleChangeForm}>
                                 登 录
                         </UserInfo> : 
                         <UserInfo 
                             userState={userChange} 
-                            ChangeLogin={this.handleLogin}>
+                            ChangeLogin={this.handleChangeForm}>
                                 保 存
                         </UserInfo>
                     }
                 </div>
-            </div>
-            
+            </div>   
         )
     }
 }

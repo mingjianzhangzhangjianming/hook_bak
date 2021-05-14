@@ -10,7 +10,7 @@ module.exports = function (app) {
             },
             cookieDomainRewrite: "localhost",
             onProxyReq(proxyReq, req, res) {
-                proxyReq.setHeader('cookie', 'JSESSIONID=3B497A831D569CE15FE1921CA2453EF9;path=/AdminTool;HttpOnly');
+                proxyReq.setHeader('cookie', 'JSESSIONID=35F1C0C216C9A7607665086B25A37172;path=/AdminTool;HttpOnly');
             }
         })
     )

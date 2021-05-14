@@ -4,6 +4,38 @@ import { Spin, Button, Form, Input, Row, Col, message} from 'antd';
 import { withRouter } from 'react-router-dom';
 import QueuiAnim from 'rc-queue-anim';
 import { loginSalt, loginAuth} from '@/api/';
+import { CancelToken } from 'axios';
+
+const formTailLayout = {
+    labelCol: { 
+       xxl: {
+            span: 4,
+            offset: 2
+       },
+       xl: {
+            span: 3,
+            offset: 1
+       },
+       lg: {
+           span: 3,
+           offset: 2
+       }
+    },
+    wrapperCol: { 
+        xxl: {
+            span: 16,
+            offset: 0
+       },
+       xl: {
+            span: 18,
+            offset: 2
+       },
+       lg: {
+            span: 17,
+            offset: 2
+        }
+     }
+}
 
 class UserInfo extends Component {
     constructor(props) {
@@ -26,33 +58,14 @@ class UserInfo extends Component {
             localStorage.setItem("role","tenant,test") 
             this.props.history.push('/tenant?ev=int')
         } catch(e) {
-            message.info(e.data.message)
+            if(e.data?.message) {
+                message.info(e.data.message)
+            }
         }
-
-        // loginSalt().then(({salt}) => {
-        //     if(!salt) {
-        //         message.info("获取随机盐失败！")
-        //         return
-        //     }
-        //     const data = {
-        //         username: username + "@intellicredit.cn",
-        //         password: "007203bb1775f070dc27bad6c151950c253222cd" + salt
-        //     }
-        //     loginAuth(JSON.stringify(data)).then(res => {
-        //         localStorage.setItem("isLogin",true)
-        //         localStorage.setItem("username",res.username)
-        //         localStorage.setItem("role","tenant,test") 
-        //         this.props.history.push('/tenant?ev=int')
-        //     })
-        // }).catch(err => console.log(err))
     }
 
-    // onFinishFailed() {
-
-    // }
-    componentDidMount() {
-        const { type } = this.props.userState
-        console.log(type)
+    onFinishFailed(err) {
+        console.log('Failed:',err)
     }
 
     render() {
@@ -60,21 +73,19 @@ class UserInfo extends Component {
         return (
             <>  
                 <Spin spinning={userState.isSpin} tip={userState.tip}>
-                    <QueuiAnim className="demo-content" delay={800}>
+                    <QueuiAnim className="demo-content" delay={500}>
                         <Form 
                             key="form"
                             labelAlign="left" 
-                            {...userState.formTailLayout} 
+                            {...formTailLayout} 
                             onFinish={value => this.onFinish(value)}
                             onFinishFailed={errorInfo => this.onFinishFailed(errorInfo)} 
                         >
                             {
                                 userState.tableList.map(({label,name,rules,children}) =>
                                     <Form.Item 
-                                        label={label} 
-                                        name={name} 
-                                        rules={rules} 
-                                        key={name}
+                                        label={label} name={name} 
+                                        rules={rules} key={name}
                                     >
                                         {   
                                             children.type==="username" ? 

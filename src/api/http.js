@@ -6,7 +6,6 @@ import axios from "axios"
 // import { Redirect } from "react-router-dom"
 import { message } from "antd" //notification
 
-
 const instance = axios.create({
     // `method` 是创建请求时使用的方法
     method: 'get',
@@ -37,7 +36,7 @@ const instance = axios.create({
 
 
 instance.interceptors.request.use(config => {
-    const token = sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("token");  //携带token
     token && (config.headers['Authorization'] = token);
     return config
 }, error => {
